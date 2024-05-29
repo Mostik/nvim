@@ -1,13 +1,10 @@
 
--- Neovim settings
 vim.opt.number = true
 vim.opt.mouse = 'a'
 vim.opt.cursorline = false
 
 vim.opt.scrolloff = 5
 vim.opt.completeopt = {"menu", "menuone", "noselect"}
-
-
 
 -- Install Lazy package manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -24,18 +21,19 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Load plugins
---
+
 local lazy = require("lazy")
 lazy.setup({
-  'nativerv/cyrillic.nvim',
+  -- LSP
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
   'neovim/nvim-lspconfig',
   'hrsh7th/nvim-cmp' ,
   'hrsh7th/cmp-nvim-lsp',
-  'windwp/nvim-autopairs',
   'nvim-lua/plenary.nvim',
+  -- Search
   'nvim-pack/nvim-spectre',
+  -- File explorer
   {
     'nvim-neo-tree/neo-tree.nvim', 
     dependencies = {
@@ -46,7 +44,12 @@ lazy.setup({
   },
   -- Color schemes
   "blazkowolf/gruber-darker.nvim",
-  { 'wakatime/vim-wakatime', lazy = false }
+
+  -- Other
+  'nativerv/cyrillic.nvim',
+  'numToStr/Comment.nvim',
+  { 'wakatime/vim-wakatime', lazy = false },
+  'windwp/nvim-autopairs',
 
 })
 
@@ -57,6 +60,7 @@ require("cyrillic").setup()
 require("mason").setup()
 require("nvim-autopairs").setup()
 require("mason-lspconfig").setup()
+require("Comment").setup()
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
@@ -81,5 +85,4 @@ cmp.setup({
 
 
 vim.keymap.set({"n", "i"}, "<C-s>", ':Neotree close<CR><cmd> lua require("spectre").toggle()<CR>' )
-
 vim.keymap.set({"n", "i"}, "<C-e>", '<cmd> lua require("spectre").close()<CR>:Neotree toggle<CR>' )
