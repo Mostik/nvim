@@ -3,8 +3,10 @@ vim.opt.number = true
 vim.opt.mouse = 'a'
 vim.opt.cursorline = false
 
-vim.opt.scrolloff = 5
+vim.opt.scrolloff = 0
 vim.opt.completeopt = {"menu", "menuone", "noselect"}
+
+vim.g.mapleader = ","
 
 -- Install Lazy package manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -42,8 +44,10 @@ lazy.setup({
       'MunifTanjim/nui.nvim',
     },
   },
+  -- Git
+  'sindrets/diffview.nvim',
   -- Color schemes
-  "blazkowolf/gruber-darker.nvim",
+  'blazkowolf/gruber-darker.nvim',
 
   -- Other
   'nvim-treesitter/nvim-treesitter',
@@ -55,7 +59,6 @@ lazy.setup({
 })
 
 vim.cmd.colorscheme( "gruber-darker" )
-
 
 require("nvim-treesitter.configs").setup({
 
@@ -100,5 +103,8 @@ cmp.setup({
   })
 })
 
-vim.keymap.set({"n", "i"}, "<C-s>", ':Neotree close<CR><cmd> lua require("spectre").toggle()<CR>' )
-vim.keymap.set({"n", "i"}, "<C-e>", '<cmd> lua require("spectre").close()<CR>:Neotree toggle<CR>' )
+vim.keymap.set({"n", "i"}, "<leader>s", ':Neotree close<CR><cmd> lua require("spectre").toggle()<CR>' )
+vim.keymap.set({"n", "i"}, "<leader>e", '<cmd> lua require("spectre").close()<CR>:Neotree toggle<CR>' )
+vim.keymap.set({"n", "i"}, "<leader>go", ':DiffviewClose<CR>:DiffviewOpen<CR>' )
+vim.keymap.set({"n", "i"}, "<leader>gc", ':DiffviewClose<CR>' )
+
