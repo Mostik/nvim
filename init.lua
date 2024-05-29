@@ -55,6 +55,7 @@ lazy.setup({
   'numToStr/Comment.nvim',
   { 'wakatime/vim-wakatime', lazy = false },
   'windwp/nvim-autopairs',
+  'nmac427/guess-indent.nvim',
 
 })
 
@@ -66,6 +67,7 @@ require("nvim-treesitter.configs").setup({
 
 
 require("cyrillic").setup()
+require("guess-indent").setup()
 require("mason").setup()
 require("nvim-autopairs").setup()
 require("mason-lspconfig").setup()
