@@ -46,6 +46,7 @@ lazy.setup({
   "blazkowolf/gruber-darker.nvim",
 
   -- Other
+  'nvim-treesitter/nvim-treesitter',
   'nativerv/cyrillic.nvim',
   'numToStr/Comment.nvim',
   { 'wakatime/vim-wakatime', lazy = false },
@@ -56,6 +57,11 @@ lazy.setup({
 vim.cmd.colorscheme( "gruber-darker" )
 
 
+require("nvim-treesitter.configs").setup({
+
+})
+
+
 require("cyrillic").setup()
 require("mason").setup()
 require("nvim-autopairs").setup()
@@ -64,13 +70,24 @@ require("Comment").setup()
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-require("lspconfig")["tsserver"].setup({
-  capabilities = capabilities,
-})
+require("mason-lspconfig").setup_handlers {
+  function(server_name)
+    
+  require("lspconfig")[server_name].setup({
+    capabilities = capabilities,
+  })
+  end
+}
+
 
 local cmp = require("cmp")
 
 cmp.setup({
+  -- snippet = {
+  --   expand = function(args)
+  --     
+  --   end
+  -- },
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
   }),
@@ -82,7 +99,6 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   })
 })
-
 
 vim.keymap.set({"n", "i"}, "<C-s>", ':Neotree close<CR><cmd> lua require("spectre").toggle()<CR>' )
 vim.keymap.set({"n", "i"}, "<C-e>", '<cmd> lua require("spectre").close()<CR>:Neotree toggle<CR>' )
