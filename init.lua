@@ -61,11 +61,7 @@ lazy.setup({
 
 vim.cmd.colorscheme( "gruber-darker" )
 
-require("nvim-treesitter.configs").setup({
-
-})
-
-
+require("nvim-treesitter.configs").setup({})
 require("cyrillic").setup()
 require("guess-indent").setup()
 require("mason").setup()
@@ -102,7 +98,17 @@ cmp.setup({
     ['<ESC>'] = cmp.mapping.abort(),
     ['<TAB>'] = cmp.mapping.confirm({ select = true }),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
-  })
+  }),
+  formatting = {
+    fields = { "kind", "abbr", "menu" },
+    format = function(entry, vim_item)
+      -- vim_item.kind = " "
+      vim_item.menu = "->"
+      vim_item.abbr = vim_item.abbr:match("[^(]+")
+
+      return vim_item
+    end
+  },
 })
 
 vim.keymap.set({"n", "i"}, "<leader>s", ':Neotree close<CR><cmd> lua require("spectre").toggle()<CR>' )
@@ -112,4 +118,7 @@ vim.keymap.set({"n", "i"}, "<leader>gc", ':DiffviewClose<CR>' )
 
 vim.keymap.set({"n", "i"}, "gd", function() vim.lsp.buf.definition() end )
 vim.keymap.set({"n", "i"}, "K", function() vim.lsp.buf.hover() end )
+
+vim.keymap.set({"v"}, "<Tab>", ">gv")
+vim.keymap.set({"v"}, "<S-Tab>", "<gv")
 
