@@ -109,5 +109,7 @@ vim.keymap.set({"n", "i"}, "<leader>s", ':Neotree close<CR><cmd> lua require("sp
 vim.keymap.set({"n", "i"}, "<leader>e", '<cmd> lua require("spectre").close()<CR>:Neotree toggle<CR>' )
 vim.keymap.set({"n", "i"}, "<leader>go", ':DiffviewClose<CR>:DiffviewOpen<CR>' )
 vim.keymap.set({"n", "i"}, "<leader>gc", ':DiffviewClose<CR>' )
+
 vim.keymap.set({"n", "i"}, "gd", function() vim.lsp.buf.definition() end )
+vim.keymap.set({"n", "i"}, "K", function() vim.lsp.buf.hover() end )
 
