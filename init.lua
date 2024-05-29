@@ -45,7 +45,8 @@ lazy.setup({
     },
   },
   -- Color schemes
-  "blazkowolf/gruber-darker.nvim"
+  "blazkowolf/gruber-darker.nvim",
+  { 'wakatime/vim-wakatime', lazy = false }
 
 })
 
@@ -77,3 +78,8 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   })
 })
+
+
+vim.keymap.set({"n", "i"}, "<C-s>", ':Neotree close<CR><cmd> lua require("spectre").toggle()<CR>' )
+
+vim.keymap.set({"n", "i"}, "<C-e>", '<cmd> lua require("spectre").close()<CR>:Neotree toggle<CR>' )
