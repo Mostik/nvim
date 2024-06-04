@@ -1,4 +1,3 @@
-
 vim.opt.number = true
 vim.opt.mouse = 'a'
 vim.opt.cursorline = false
@@ -8,6 +7,8 @@ vim.opt.completeopt = {"menu", "menuone", "noselect"}
 
 vim.g.mapleader = ","
 vim.opt.termguicolors = true
+
+vim.api.nvim_set_option("clipboard","unnamed")
 
 -- Install Lazy package manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
