@@ -7,6 +7,7 @@ vim.opt.scrolloff = 0
 vim.opt.completeopt = {"menu", "menuone", "noselect"}
 
 vim.g.mapleader = ","
+vim.opt.termguicolors = true
 
 -- Install Lazy package manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -44,10 +45,18 @@ lazy.setup({
       'MunifTanjim/nui.nvim',
     },
   },
+  -- Buffer line
+  {
+    'akinsho/bufferline.nvim',
+    version = "*", 
+    dependencies = 'nvim-tree/nvim-web-devicons'
+  },
   -- Git
   'sindrets/diffview.nvim',
   -- Color schemes
   'blazkowolf/gruber-darker.nvim',
+
+  'icedman/nvim-textmate',
 
   -- Other
   'nvim-treesitter/nvim-treesitter',
@@ -56,10 +65,17 @@ lazy.setup({
   { 'wakatime/vim-wakatime', lazy = false },
   'windwp/nvim-autopairs',
   'nmac427/guess-indent.nvim',
+  'ojroques/nvim-bufdel',
 
 })
 
 vim.cmd.colorscheme( "gruber-darker" )
+
+require('nvim-textmate').setup({
+    -- quick_load = true,
+    -- theme_name = 'gruber-darker',
+    -- override_colorscheme = false
+})
 
 require("nvim-treesitter.configs").setup({})
 require("cyrillic").setup()
@@ -68,6 +84,12 @@ require("mason").setup()
 require("nvim-autopairs").setup()
 require("mason-lspconfig").setup()
 require("Comment").setup()
+
+require("bufferline").setup{}
+require("bufdel").setup{
+  next = 'tabs',
+  quit = false,
+}
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
@@ -122,3 +144,6 @@ vim.keymap.set({"n", "i"}, "K", function() vim.lsp.buf.hover() end )
 vim.keymap.set({"v"}, "<Tab>", ">gv")
 vim.keymap.set({"v"}, "<S-Tab>", "<gv")
 
+vim.keymap.set({"n", "i"}, "]b", ":BufferLineCycleNext<CR>")
+vim.keymap.set({"n", "i"}, "[b", ":BufferLineCyclePrev<CR>")
+vim.keymap.set({"n", "i"}, "<leader>c", ":BufDel<CR>")
