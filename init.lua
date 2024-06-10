@@ -1,12 +1,14 @@
 vim.opt.number = true
 vim.opt.mouse = 'a'
 vim.opt.cursorline = false
+vim.opt.swapfile = false
 
 vim.opt.scrolloff = 0
 vim.opt.completeopt = {"menu", "menuone", "noselect"}
+vim.opt.termguicolors = true
 
 vim.g.mapleader = ","
-vim.opt.termguicolors = true
+vim.wo.wrap = false;
 
 vim.api.nvim_set_option("clipboard","unnamed")
 
@@ -73,9 +75,9 @@ lazy.setup({
 vim.cmd.colorscheme( "gruber-darker" )
 
 require('nvim-textmate').setup({
-    -- quick_load = true,
-    -- theme_name = 'gruber-darker',
-    -- override_colorscheme = false
+    quick_load = true,
+    theme_name = 'gruber-darker',
+    override_colorscheme = false
 })
 
 require("nvim-treesitter.configs").setup({})
@@ -118,7 +120,10 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['j'] = cmp.mapping.select_next_item(),
     ['k'] = cmp.mapping.select_prev_item(),
-    ['<ESC>'] = cmp.mapping.abort(),
+    ['<ESC>'] = function() 
+      cmp.mapping.abort()
+      vim.cmd("stopinsert");
+    end,
     ['<TAB>'] = cmp.mapping.confirm({ select = true }),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   }),
@@ -140,7 +145,7 @@ vim.keymap.set({"n", "i"}, "<leader>go", ':DiffviewClose<CR>:DiffviewOpen<CR>' )
 vim.keymap.set({"n", "i"}, "<leader>gc", ':DiffviewClose<CR>' )
 
 vim.keymap.set({"n", "i"}, "gd", function() vim.lsp.buf.definition() end )
-vim.keymap.set({"n", "i"}, "K", function() vim.lsp.buf.hover() end )
+vim.keymap.set({"n"}, "K", function() vim.lsp.buf.hover() end )
 
 vim.keymap.set({"v"}, "<Tab>", ">gv")
 vim.keymap.set({"v"}, "<S-Tab>", "<gv")
@@ -148,3 +153,4 @@ vim.keymap.set({"v"}, "<S-Tab>", "<gv")
 vim.keymap.set({"n", "i"}, "]b", ":BufferLineCycleNext<CR>")
 vim.keymap.set({"n", "i"}, "[b", ":BufferLineCyclePrev<CR>")
 vim.keymap.set({"n", "i"}, "<leader>c", ":BufDel<CR>")
+vim.keymap.set({"n", "i"}, "<ESC>", function() vim.cmd("stopinsert") end )
