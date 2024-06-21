@@ -59,8 +59,6 @@ lazy.setup({
   -- Color schemes
   'blazkowolf/gruber-darker.nvim',
 
-  'icedman/nvim-textmate',
-
   -- Other
   'nvim-treesitter/nvim-treesitter',
   'nativerv/cyrillic.nvim',
@@ -70,15 +68,11 @@ lazy.setup({
   'nmac427/guess-indent.nvim',
   'ojroques/nvim-bufdel',
 
+  "max397574/better-escape.nvim",
+
 })
 
 vim.cmd.colorscheme( "gruber-darker" )
-
-require('nvim-textmate').setup({
-    quick_load = true,
-    theme_name = 'gruber-darker',
-    override_colorscheme = false
-})
 
 require("nvim-treesitter.configs").setup({})
 require("cyrillic").setup()
@@ -93,6 +87,8 @@ require("bufdel").setup{
   next = 'tabs',
   quit = false,
 }
+
+require("better_escape").setup()
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
