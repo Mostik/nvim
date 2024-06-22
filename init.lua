@@ -10,7 +10,8 @@ vim.opt.termguicolors = true
 vim.g.mapleader = ","
 vim.wo.wrap = false;
 
-vim.api.nvim_set_option("clipboard","unnamed")
+-- vim.api.nvim_set_option("clipboard","unnamed")
+vim.api.nvim_command("set clipboard+=unnamedplus")
 
 -- Install Lazy package manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
