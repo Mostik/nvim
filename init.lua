@@ -10,6 +10,9 @@ vim.opt.termguicolors = true
 vim.g.mapleader = ","
 vim.wo.wrap = false;
 
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+
 -- vim.api.nvim_set_option("clipboard","unnamed")
 vim.api.nvim_command("set clipboard+=unnamedplus")
 
@@ -64,12 +67,18 @@ lazy.setup({
   'nvim-treesitter/nvim-treesitter',
   'nativerv/cyrillic.nvim',
   'numToStr/Comment.nvim',
-  { 'wakatime/vim-wakatime', lazy = false },
+  -- { 'wakatime/vim-wakatime', lazy = false },
   'windwp/nvim-autopairs',
   'nmac427/guess-indent.nvim',
   'ojroques/nvim-bufdel',
 
   "max397574/better-escape.nvim",
+  {
+  'kaiuri/nvim-juliana',
+  lazy = false,
+  opts = { --[=[ configuration --]=] },
+  config = true,
+}
 
 })
 
