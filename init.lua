@@ -84,7 +84,11 @@ lazy.setup({
 
 vim.cmd.colorscheme( "gruber-darker" )
 
-require("nvim-treesitter.configs").setup({})
+require("nvim-treesitter.configs").setup({
+  highlight = {
+    enable = true,
+  }
+})
 require("cyrillic").setup()
 require("guess-indent").setup()
 require("mason").setup()
