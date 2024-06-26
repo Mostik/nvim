@@ -75,10 +75,10 @@ lazy.setup({
   "max397574/better-escape.nvim",
   {
   'kaiuri/nvim-juliana',
-  lazy = false,
-  opts = { --[=[ configuration --]=] },
-  config = true,
-}
+    lazy = false,
+    opts = { --[=[ configuration --]=] },
+    config = true,
+  }
 
 })
 
