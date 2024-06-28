@@ -128,13 +128,12 @@ cmp.setup({
     { name = "nvim_lsp" },
   }),
   mapping = cmp.mapping.preset.insert({
-    ['j'] = cmp.mapping.select_next_item(),
-    ['k'] = cmp.mapping.select_prev_item(),
+    ['<TAB>'] = cmp.mapping.select_next_item(),
+    ['<S-TAB>'] = cmp.mapping.select_prev_item(),
     ['<ESC>'] = function() 
       cmp.mapping.abort()
       vim.cmd("stopinsert");
     end,
-    ['<TAB>'] = cmp.mapping.confirm({ select = true }),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   }),
   formatting = {
