@@ -78,7 +78,8 @@ lazy.setup({
     lazy = false,
     opts = { --[=[ configuration --]=] },
     config = true,
-  }
+  },
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} }
 
 })
 
@@ -95,6 +96,9 @@ require("mason").setup()
 require("nvim-autopairs").setup()
 require("mason-lspconfig").setup()
 require("Comment").setup()
+require("ibl").setup({
+  scope = { enabled = false },
+})
 
 require("bufferline").setup{}
 require("bufdel").setup{
