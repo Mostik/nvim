@@ -67,6 +67,7 @@ lazy.setup({
   'nvim-treesitter/nvim-treesitter',
   'nativerv/cyrillic.nvim',
   'numToStr/Comment.nvim',
+  'JoosepAlviste/nvim-ts-context-commentstring',
   -- { 'wakatime/vim-wakatime', lazy = false },
   'windwp/nvim-autopairs',
   'nmac427/guess-indent.nvim',
@@ -109,7 +110,9 @@ require("guess-indent").setup()
 require("mason").setup()
 require("nvim-autopairs").setup()
 require("mason-lspconfig").setup()
-require("Comment").setup()
+require("Comment").setup({
+    pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+})
 require("ibl").setup({
   scope = { enabled = false },
 })
